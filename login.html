@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="./styles/login.css" />
+<div class="pen-title">
+    <h1>Flat Login Form</h1>
+    <span
+        >Pen <i class="fa fa-paint-brush"></i> + <i class="fa fa-code"></i> by
+        <a href="http://andytran.me">Andy Tran</a></span
+    >
+</div>
+<div class="module form-module">
+    <div class="toggle">
+        <i class="fa fa-times fa-pencil"></i>
+    </div>
+    <div class="form">
+        <h2>Login to your account</h2>
+        <form>
+            <input type="text" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <button>Login</button>
+        </form>
+    </div>
+</div>
+
+<script type="module" src="./scripts/auth.js"></script>
+<script type="module">
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+    document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = this.email.value.trim();
+        const password = this.password.value.trim();
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                window.location.href = "shop.html";
+            })
+            .catch((error) => {
+                console.log("wrong email and password");
+            });
+    });
+</script>
